@@ -77,3 +77,7 @@ gem "devise"
 
 # Annotate models
 gem "annotate"
+
+
+# friendly url 
+gem 'friendly_id', '~> 5.4.0'

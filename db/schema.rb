@@ -16,11 +16,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_063538) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false, comment: "This is the users business account where multiple sub users can be added"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
   create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.text "project_name", null: false, comment: "The name of the project"
     t.text "description", null: false, comment: "Project Description"
-    t.text "project_number", null: false, comment: "The project's display number within the system"
+    t.text "project_number", null: false, comment: "The project's display number within the system.This number is auto generated in app/services/project_creator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
@@ -55,5 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_063538) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "accounts", "users"
   add_foreign_key "projects", "users"
 end
