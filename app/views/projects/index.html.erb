@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation" %>
 
-<h1>Projects</h1>
+      <!-- beginning of clients title card -->
+      
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
+      <div class="card mb-3">
+        <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<%= asset_path "illustrations/corner-4.png" %>);">
+        </div>
+        <!--/.bg-holder-->
 
-<%= link_to "New project", new_project_path %>
+        <div class="card-body position-relative">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3><%= current_user.first_name %>'s </h3>
+              <p class="mb-0">List of all projects</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end of clients title card -->
+
+      <!-- main content for clients index -->
+
+      <%= render "projects/list_of_projects" %>
+
+      <!-- end of main content list of clients -->
+
+      
+    </div>
+    
+  </div>
+
+</main>

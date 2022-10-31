@@ -1,11 +1,15 @@
 class ProjectsController < ApplicationController
+  set_current_tenant_through_filter
+  before_action :set_current_account
   layout "dashboard"
   before_action :authenticate_user!
+  
+  
   # before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
   def index
-    @projects = current_user.projects.order(created_at: :desc)
+    @projects = Project.order(created_at: :desc)
   end
 
   # GET /projects/1 or /projects/1.json
@@ -15,7 +19,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = current_user.projects.build
+    @project = Project.new
+    # byebug
   end
 
   # GET /projects/1/edit
@@ -25,10 +30,13 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    @project = current_user.projects.build(project_params)
+    @project = Project.new(project_params)
+    @project.user = current_user
+
 
     respond_to do |format|
       if @project.save
+        byebug
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         
       else
@@ -66,15 +74,21 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_project
-      @project = current_user.projects.find(params[:id])
+      @project = Project.find(params[:id])
+    end
+
+    def set_current_account 
+      return unless current_user.present?
+      current_account = current_user.account 
+      ActsAsTenant.current_tenant = current_account
     end
 
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(
-        :user_id,
         :project_name, 
-        :description
+        :description,
+        :project_number
       )
     end
 end

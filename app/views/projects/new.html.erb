@@ -1,9 +1,30 @@
-<h1>New project</h1>
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation" %>
 
-<%= render "form", project: @project %>
+      <!-- main content for clients index -->
+      <div class="card mb-3">
+        <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<%= asset_path "illustrations/corner-4.png" %>);">
+        </div>
+        <!--/.bg-holder-->
 
-<br>
+        <div class="card-body position-relative">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>New Project</h3>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div>
-  <%= link_to "Back to projects", projects_path %>
-</div>
+      <%= render "form", project: @project %>
+
+      <!-- end of main content list of clients -->
+
+      
+    </div>
+    
+  </div>
+</main>

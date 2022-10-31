@@ -38,4 +38,11 @@ class User < ApplicationRecord
   # associations
   has_one :account
   has_many :projects, dependent: :destroy
+
+  # call backs
+  before_validation :set_account 
+
+  def set_account
+    self.build_account
+  end
 end
