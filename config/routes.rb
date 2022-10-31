@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :team_members
   root to: 'pages#home'
 
   get 'dashboard/index'
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects
+  resources :team_members
 end
