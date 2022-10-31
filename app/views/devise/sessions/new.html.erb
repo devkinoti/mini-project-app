@@ -1,26 +1,68 @@
-<h2>Log in</h2>
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <div class="row flex-center min-vh-100 py-6">
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+        <%= link_to root_path, class: "d-flex flex-center mb-4" do %>
+          <%= image_tag "ledger_cub_orange.png", class: "me-2" %>
+        <%end%>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <%= render "layouts/flash" %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <div class="card">
+          <div class="card-body p-4 p-sm-5">
+            <div class="row flex-between-center mb-2">
+              <div class="col-auto">
+                <h5>Log in</h5>
+              </div>
+              <div class="col-auto fs--1 text-600">
+              <span class="mb-0 undefined">or</span> 
+              
+              <span><%= link_to "Create an account", new_user_registration_path %></span>
+              </div>
+            </div>
+            
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="mb-3">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address",class: "form-control" %>
+              </div>
+              <div class="mb-3">
+                <%= f.password_field :password, autocomplete: "current-password",class: "form-control" %>
+              </div>
+              <div class="row flex-between-center">
+                <div class="col-auto">
+                <% if devise_mapping.rememberable? %>
+                  <div class="form-check mb-0">
+                    
+                    <%= f.check_box :remember_me, class: "form-check-input", id: "basic-checkbox", checked: "checked" %>
+                    
+                    <%= f.label :remember_me, class: "form-check-label" %>
+                  </div>
+                <%end%>
+                </div>
+                
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+                
+              </div>
+              <div class="mb-3">
+                <%= f.submit "Log in", class: "btn btn-primary d-block w-100 mt-3"%>
+              </div>
+            <%end%>
+
+
+            <div class="position-relative mt-4">
+              <hr class="bg-300" />
+              
+            </div>
+
+            <%= render "devise/shared/links" %>
+
+
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</main>
 
-<%= render "devise/shared/links" %>
+

@@ -1,0 +1,55 @@
+<!-- Header Area -->
+<header class="site-header site-header--menu-left dynamic-sticky-bg mt-2 mt-lg-0 menu-block-4 mb-7 mb-lg-0 site-header--absolute site-header--sticky">
+  <div class="container">
+    <nav class="navbar site-navbar bg-white">
+      <!-- Brand Logo-->
+      <div class="brand-logo">
+          <%= link_to root_path do %>
+            <%= image_tag 'ledger_cub_orange.png',alt: "" %>
+          <%end%>
+      </div>
+      <div class="menu-block-wrapper ">
+        <div class="menu-overlay"></div>
+        <nav class="menu-block" id="append-menu-header">
+          <div class="mobile-menu-head">
+            <div class="go-back">
+                <i class="fa fa-angle-left"></i>
+            </div>
+            <div class="current-menu-title"></div>
+            <div class="mobile-menu-close">&times;</div>
+          </div>
+          <ul class="site-menu-main">
+            <li class="nav-item nav-item-has-children">
+                <a href="#" class="nav-link-item drop-trigger">Product Benefits&nbsp; </a>
+                <ul class="sub-menu" id="submenu-1">
+                    <li class="sub-menu--item">
+                        <a>Business owners</a>
+                    </li>
+                    <li class="sub-menu--item">
+                        <a>Developers</a>
+                    </li>
+                    <li class="sub-menu--item">
+                        <a>Designers</a>
+                    </li>
+                    <li class="sub-menu--item">
+                        <a>Project Managers</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-item-has-children">
+                <%= link_to "Pricing", pricing_path, class: "nav-link-item drop-trigger" %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-btns  d-flex align-items-center justify-content-center flex-column flex-xs-row">
+          <%= link_to "Sign in", new_user_session_path, class: "btn h-45 btn-primary text-white rounded-55" %>
+      </div>
+      <!-- mobile menu trigger -->
+      <div class="mobile-menu-trigger">
+          <span></span>
+      </div>
+      <!--/.Mobile Menu Hamburger Ends-->
+    </nav>
+  </div>
+</header>

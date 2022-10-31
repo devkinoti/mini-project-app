@@ -1,0 +1,45 @@
+<li class="nav-item">
+  <!-- label-->
+  <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+    <div class="col-auto navbar-vertical-label">Application Settings
+    </div>
+    <div class="col ps-0">
+      <hr class="mb-0 navbar-vertical-divider" />
+    </div>
+  </div>
+  <!-- parent pages-->
+  <%= link_to "#" , class: "nav-link", data: { role: "button", data_bs_toggle: "", aria_expanded: "false" } do %>
+    <div class="d-flex align-items-center">
+      <span class="nav-link-icon">
+        <span class="fas fa-cog"></span>
+      </span>
+      <span class="nav-link-text ps-1">Settings</span>
+    </div>
+  <%end%>
+  <!-- parent pages-->
+  <a class="nav-link dropdown-indicator" 
+      href="#help" 
+      role="button" 
+      data-bs-toggle="collapse" 
+      aria-expanded="false" 
+      aria-controls="help">
+
+  
+      <div class="d-flex align-items-center">
+        <span class="nav-link-icon">
+          <span class="fas fa-question-circle"></span>
+        </span>
+        <span class="nav-link-text ps-1">Help</span>
+      </div>
+    </a>
+    <ul class="nav collapse" id="help">
+      <li class="nav-item">
+        <%= link_to "#" , class: "nav-link", data: { data_bs_toggle: "", aria_expanded: "false" } do %>
+          <div class="d-flex align-items-center">
+            <span class="nav-link-text ps-1">Knowledge Base</span>
+          </div>
+        <%end%>
+        <!-- more inner pages-->
+      </li>
+    </ul>
+</li>

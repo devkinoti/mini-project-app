@@ -1,0 +1,63 @@
+<li class="nav-item">
+  <!-- label-->
+  <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+    <div class="col-auto navbar-vertical-label">
+      Nutrition Ledger
+    </div>
+    <div class="col ps-0">
+      <hr class="mb-0 navbar-vertical-divider" />
+    </div>
+  </div>
+  <!-- parent pages-->
+  <a class="nav-link dropdown-indicator" 
+      href="#clinic" 
+      role="button" 
+      data-bs-toggle="collapse" 
+      aria-expanded="false" 
+      aria-controls="clinic">         
+    <div class="d-flex align-items-center">
+      <span class="nav-link-icon">
+        <span class="fas fa-clinic-medical"></span>
+      </span>
+      <span class="nav-link-text ps-1">Clinic</span>
+    </div>
+  </a>
+  <ul class="nav collapse" id="clinic">
+    <li class="nav-item">
+      
+      <%= link_to "#" ,class: "nav-link", data: { aria_expanded: "false", data_bs_toggle: ""} do %>
+        <div class="d-flex align-items-center">
+          <span class="nav-link-text ps-1">Clients</span>
+        </div>
+      <%end%>
+      
+      <!-- more inner pages-->
+    </li>
+  </ul>
+  <a class="nav-link dropdown-indicator" 
+      href="#food" 
+      role="button" 
+      data-bs-toggle="collapse" 
+      aria-expanded="false" 
+      aria-controls="food">
+    <div class="d-flex align-items-center">
+      <span class="nav-link-icon">
+        <span class="fas fa-apple-alt"></span>
+      </span>
+      <span class="nav-link-text ps-1">Food</span>
+    </div>
+  </a>
+  <ul class="nav collapse" id="food">
+    <li class="nav-item">
+      
+      <%= link_to "#", class: "nav-link", data: { data_bs_toggle: "", aria_expanded: "false" } do %>
+        <div class="d-flex align-items-center">
+          <span class="nav-link-text ps-1">Food Databases</span>
+        </div>
+      <%end%>
+      
+      <!-- more inner pages-->
+    </li>
+  </ul>
+
+</li>
