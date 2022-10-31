@@ -10,7 +10,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
         comment: "Project Description"
 
       t.text :project_number, null: false, 
-        comment: "The project's display number within the system"
+        comment: "The project's display number within the system.This number is auto generated in app/services/project_creator"
 
 
       t.timestamps
