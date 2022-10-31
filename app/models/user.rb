@@ -34,4 +34,7 @@ class User < ApplicationRecord
 
 
   validates_acceptance_of :terms_agreement, allow_nil: false, on: :create 
+
+  # associations
+  has_many :projects, dependent: :destroy
 end

@@ -2,7 +2,7 @@
   <!-- label-->
   <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
     <div class="col-auto navbar-vertical-label">
-      Nutrition Ledger
+      LedgerCub
     </div>
     <div class="col ps-0">
       <hr class="mb-0 navbar-vertical-divider" />
@@ -19,15 +19,15 @@
       <span class="nav-link-icon">
         <span class="fas fa-clinic-medical"></span>
       </span>
-      <span class="nav-link-text ps-1">Clinic</span>
+      <span class="nav-link-text ps-1">Projects</span>
     </div>
   </a>
   <ul class="nav collapse" id="clinic">
     <li class="nav-item">
       
-      <%= link_to "#" ,class: "nav-link", data: { aria_expanded: "false", data_bs_toggle: ""} do %>
+      <%= link_to projects_path ,class: "nav-link", data: { aria_expanded: "false", data_bs_toggle: ""} do %>
         <div class="d-flex align-items-center">
-          <span class="nav-link-text ps-1">Clients</span>
+          <span class="nav-link-text ps-1">Projects</span>
         </div>
       <%end%>
       
@@ -44,7 +44,7 @@
       <span class="nav-link-icon">
         <span class="fas fa-apple-alt"></span>
       </span>
-      <span class="nav-link-text ps-1">Food</span>
+      <span class="nav-link-text ps-1">Teams</span>
     </div>
   </a>
   <ul class="nav collapse" id="food">
@@ -52,7 +52,7 @@
       
       <%= link_to "#", class: "nav-link", data: { data_bs_toggle: "", aria_expanded: "false" } do %>
         <div class="d-flex align-items-center">
-          <span class="nav-link-text ps-1">Food Databases</span>
+          <span class="nav-link-text ps-1">Team Members</span>
         </div>
       <%end%>
       
