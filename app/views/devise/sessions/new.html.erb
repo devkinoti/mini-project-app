@@ -14,16 +14,28 @@
               <div class="col-auto">
               <% if current_page?(new_team_member_session_path) %>
                 <h5>Log in as Team Member</h5>
+                  <div class="col-auto fs--1 text-600">
+                    <span class="mb-0 undefined"></span>
+                    <span>
+                      or <%= link_to "Login as account owner", new_user_session_path %>
+                    </span>
+                  </div>
                 <%else%>
                 <h5>Log in</h5>
-              <%end%>
+                <%end%>
+              
               </div>
+
+              
               <% if current_page?(new_user_session_path)%>
               <div class="col-auto fs--1 text-600">
                 <span class="mb-0 undefined"></span>              
                 <span>
+                  
                 
                   <%= link_to "Create a new account", new_user_registration_path %>
+                  or
+                  <%= link_to "Login as team member", new_team_member_session_path %>
                   
                 
                 </span>
