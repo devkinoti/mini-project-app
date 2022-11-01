@@ -1,6 +1,4 @@
-class TeamMembers::SessionsController < Devise::SessionsController 
-  
-
+class Users::SessionsController < Devise::SessionsController 
   protected
 
   def after_sign_in_path_for(resource)
@@ -9,6 +7,6 @@ class TeamMembers::SessionsController < Devise::SessionsController
 
 
   def after_sign_out_path_for(resource)
-    new_team_member_session_path
+    new_user_session_path
   end
 end
