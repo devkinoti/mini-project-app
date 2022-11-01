@@ -2,7 +2,9 @@ class ProjectsController < ApplicationController
   set_current_tenant_through_filter
   before_action :set_current_account
   layout "dashboard"
-  before_action :authenticate_user!
+  devise_group :project_member, contains: [:user, :team_member]
+  
+  before_action :authenticate_project_member!
   
   
   # before_action :set_project, only: %i[ show edit update destroy ]
@@ -36,7 +38,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        byebug
+        
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         
       else

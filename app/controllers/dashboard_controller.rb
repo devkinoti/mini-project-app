@@ -1,8 +1,8 @@
 class DashboardController < ApplicationController
   layout "dashboard"
-  devise_group :team, contains: [:user, :team_member]
+  devise_group :project_member, contains: [:user, :team_member]
   
-  before_action :authenticate_team!
+  before_action :authenticate_project_member!
 
   
 
