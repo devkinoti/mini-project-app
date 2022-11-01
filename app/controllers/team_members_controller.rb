@@ -1,5 +1,5 @@
 class TeamMembersController < ApplicationController
-  devise_group :team_member, contains: [:user]
+  devise_group :user, contains: [:team_member]
   layout "dashboard"
 
 

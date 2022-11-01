@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   layout "dashboard"
-  before_action :authenticate_user!
+  devise_group :user, contains: [:team_member]
   
   def index
   end
