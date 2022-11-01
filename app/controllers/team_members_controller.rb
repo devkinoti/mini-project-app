@@ -1,5 +1,5 @@
 class TeamMembersController < ApplicationController
-  devise_group :user, contains: [:team_member]
+  before_action :authenticate_user!
   layout "dashboard"
 
 
@@ -11,12 +11,6 @@ class TeamMembersController < ApplicationController
   def new 
     @team_member = TeamMember.new
   end
-
-
-
-
-
-  private 
 
 
 end

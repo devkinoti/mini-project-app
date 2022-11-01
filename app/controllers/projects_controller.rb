@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   set_current_tenant_through_filter
   before_action :set_current_account
   layout "dashboard"
-  devise_group :user, contains: [:team_member]
+  before_action :authenticate_user!
   
   
   # before_action :set_project, only: %i[ show edit update destroy ]

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :team_members, controllers: {
-    registrations: "team_members/registrations",
-    sessions: "team_members/sessions"
+    registrations: "team_members/registrations"
   }
   root to: 'pages#home'
 
