@@ -9,6 +9,7 @@
 #  project_number :text             not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  account_id     :uuid             not null
 #
 require "test_helper"
 

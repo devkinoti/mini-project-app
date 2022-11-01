@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_31_144033) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_073826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_144033) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "account_id", null: false
+    t.boolean "terms_agreement", default: false, null: false
     t.index ["account_id"], name: "index_team_members_on_account_id"
     t.index ["confirmation_token"], name: "index_team_members_on_confirmation_token", unique: true
     t.index ["email"], name: "index_team_members_on_email", unique: true

@@ -1,0 +1,42 @@
+<%= form_with(model: team_member, data: { turbo: false }) do |form| %>
+  <% if team_member.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(team_member.errors.count, "error") %> prohibited this team_member from being saved:</h2>
+
+      <ul>
+        <% team_member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.text_field :password %>
+  </div>
+
+  <div class="form-check">
+    <%= form.check_box :terms_agreement, class: "form-check-input", id: "basic-register-checkbox" %>
+    <%= form.label :terms_agreement, ("I accept the #{ link_to "terms", "#", target: "_blank"} and #{ link_to "privacy policy", "#", target: "_blank"}").html_safe, class: "form-label" %>
+  </div> 
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

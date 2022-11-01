@@ -4,9 +4,7 @@
     <div class="content">
       <%= render "shared/utilities_navigation" %>
 
-      <!-- beginning of clients title card -->
-      
-
+      <!-- main content for clients index -->
       <div class="card mb-3">
         <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<%= asset_path "illustrations/corner-4.png" %>);">
         </div>
@@ -15,18 +13,13 @@
         <div class="card-body position-relative">
           <div class="row">
             <div class="col-lg-8">
-              <h3><%= current_user.first_name %>'s team  </h3>
-              <p class="mb-0">List of all Team Members</p>
+              <h3>New Team Member</h3>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- end of clients title card -->
-
-      <!-- main content for clients index -->
-
-      <%= render "team_members/list_of_team_members" %>
+      <%= render "form", team_member: @team_member %>
 
       <!-- end of main content list of clients -->
 
@@ -34,5 +27,4 @@
     </div>
     
   </div>
-
 </main>

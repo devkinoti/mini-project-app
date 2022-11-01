@@ -36,8 +36,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item nav-item-has-children">
-                <%= link_to "Pricing", pricing_path, class: "nav-link-item drop-trigger" %>
+            <li class="nav-item">
+                <%= link_to "Pricing", pricing_path, class: "nav-link-item drop-trigger text-primary" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign in as team member", new_team_member_session_path, class: "nav-link-item drop-trigger text-primary" %>
             </li>
           </ul>
         </nav>
