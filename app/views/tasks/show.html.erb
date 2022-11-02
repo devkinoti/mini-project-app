@@ -1,0 +1,73 @@
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation" %>
+
+      <!-- main content for clients index -->
+      <div class="card mb-3">
+        <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<%= asset_path "illustrations/corner-4.png" %>);">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="card-body position-relative">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>Task for <%= @project.project_name %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12">
+        <div class="col-12 mb-2">
+          <div class="card mb-3">  
+            <div class="card-body">
+              <h4 class="fw-normal text-700"><%= @task.name %></h4>
+              <p class="card-text mb-1"><span class="fs--1 text-black">Start Date: </span>  <%= @task.start_date.strftime("%d %b %Y at %H:%M %p")  %></p>
+              <p class="card-text mb-1"><span class="fs--1 text-black">End Date: </span>  <%= @task.end_date.strftime("%d %b %Y at %H:%M %p") %></p>
+              <p class="card-text mb-1"><span class="fs--1 text-black">Team Members: </span>  <%= @task.team_members.count %></p>
+
+              <br>
+
+              <h6 class="text-700">Task Description</h6>
+              <p class="card-text"><%= @task.description %></p>
+                <%= link_to "Edit", 
+                  edit_project_task_path(@project, @task),
+                  class: "btn btn-primary btn-sm me-1 mb-1",
+                  data: { turbo: false }
+                    %>
+                <%= link_to "Destroy", "#", class: "btn btn-danger btn-sm me-1 mb-1"%>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="row flex-between-center">
+                <div class="col-4 col-sm-auto d-flex align-items-center pe-0">
+                  <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Team Members for <%= @task.name %></h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body bg-light px-1 py-0">
+              <div class="row g-0 text-center fs--1">
+                <% @task.team_members.each do |team_member| %>
+                  <%= render partial: "tasks/team_member_preview", locals: {team_member: team_member} %>
+                <%end%>
+              </div>
+              
+              
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    
+  </div>
+</main>

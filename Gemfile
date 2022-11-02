@@ -85,3 +85,6 @@ gem 'friendly_id', '~> 5.4.0'
 
 # multi tenancy based on row-tenancy
 gem "acts_as_tenant"
+
+# resources pagination
+gem "pagy"

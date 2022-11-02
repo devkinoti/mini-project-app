@@ -1,10 +1,153 @@
-<p style="color: green"><%= notice %></p>
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation" %>
 
-<%= render @project %>
+      <%= render "layouts/flash" %>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
+      <div class="card mb-3">
+        <div class="card-header bg-progress-gradient position-relative min-vh-25 mb-7">
+          
+          <!--/.bg-holder-->
 
-  <%= button_to "Destroy this project", @project, method: :delete %>
-</div>
+          <div class="avatar avatar-5xl avatar-profile">
+            <%= image_tag "project.png", class: "rounded-circle img-thumbnail shadow-sm", width: "200", alt: "" %>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-8">
+              <h4 class="mb-1"><%= @project.project_name %>
+                <span data-bs-toggle="tooltip" data-bs-placement="right" title="Verified">
+                  <small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small>
+                </span>
+              </h4>
+              <h5 class=" fw-normal">
+                <small>created by <%= @project.user.full_name %></span></small>                
+              </h5>
+
+              <p class="text-500"><small>created on: <%= @project.created_at.strftime("%a, %d %B %Y %H:%M ") %></small> | <small>updated on: <%= @project.updated_at.strftime("%a, %d %B %Y %H:%M ") %></small></p>
+              
+              <%= link_to "Back to All Projects", projects_path, class: "btn btn-falcon-info btn-sm px-3 " %>
+              <div class="border-dashed-bottom my-4 d-lg-none"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-sm-6 col-md-4">
+          <div class="card overflow-hidden" style="min-width: 12rem">
+            <div class="bg-holder bg-card" style="background-image:url(<%= asset_path "illustrations/corner-1.png" %>);">
+            </div>
+            <!--/.bg-holder-->
+
+            <div class="card-body position-relative">
+              <h6>
+                <%= @project.project_name %>'s
+              </h6>
+              <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning" data-countup='{"endValue":58.386,"decimalPlaces":2,"suffix":"k"}'>
+              <%= link_to "Project Data", 
+                project_path(@project),
+                class: "text-warning",
+                data: { turbo_frame: "frame_tabs"}       
+              %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="card overflow-hidden" style="min-width: 12rem">
+            <div class="bg-holder bg-card" style="background-image:url(<%= asset_path "illustrations/corner-3.png" %>);">
+            </div>
+            <!--/.bg-holder-->
+
+            <div class="card-body position-relative">
+              <h6>
+              <%= @project.project_name %>'s </h6>
+              
+              
+              <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-info" data-countup='{"endValue":23.434,"decimalPlaces":2,"suffix":"k"}'>
+                <%= link_to "Team Members", 
+                    "#", 
+                    class: "text-info",
+                    data: { turbo_frame: "frame_tabs"}
+                      %>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="card overflow-hidden" style="min-width: 12rem">
+            <div class="bg-holder bg-card" style="background-image:url(<%= asset_path "illustrations/corner-3.png" %>);">
+            </div>
+            <!--/.bg-holder-->
+
+            <div class="card-body position-relative">
+              <h6>
+                <%= @project.project_name%>'s
+              </h6>
+              <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif">
+                <%= link_to "Reports", 
+                    "#", 
+                    class: "text-success",
+                    data: { turbo_frame: "frame_tabs"}
+                      %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <%= turbo_frame_tag "frame_tabs", autoscroll: true, data: { autoscroll_block: "start", autoscroll_behavior: "smooth"} do %>
+        <div class="row g-0" id="client-data">
+
+          <div class="card mb-3">
+            <div class="card-header bg-light">
+              <h5 class="mb-0 text-warning fw-normal">Project Information</h5>
+            </div>
+
+            <div class="card-body text-justify">
+              <div class="flex-1 position-relative ps-2">
+                <%= render @project %>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card mb-3">
+            <div class="card-header bg-light d-flex justify-content-between">
+              <h5 class="mb-0 text-warning fw-normal">Project Tasks</h5>
+              <%= link_to new_project_task_path(@project), class: "btn btn-falcon-default btn-sm", data: {turbo: false } do %>
+                <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
+                <span class="d-none d-sm-inline-block ms-1">New</span>
+              <%end%>
+            </div>
+
+            <div class="card-body text-justify">
+              <div class="flex-1 position-relative ps-2">
+              <% @tasks.each do |task| %>
+                <%= render task %>
+              <%end%>
+                
+              </div>
+            </div>
+          </div>
+
+         
+        
+
+        </div>
+      <%end%>
+
+
+
+    </div>
+  </div>
+
+</main>

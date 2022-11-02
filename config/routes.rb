@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-
   root to: 'pages#home'
 
   get 'dashboard/index'
 
   get 'pricing', to: 'pages#pricing', as: :pricing
 
-  resources :projects
+  resources :projects do 
+    resources :tasks 
+  end
   resources :team_members
 
   devise_for :users

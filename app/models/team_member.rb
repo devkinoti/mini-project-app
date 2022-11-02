@@ -32,4 +32,11 @@ class TeamMember < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :lockable, :confirmable
+
+
+  has_and_belongs_to_many :tasks
+
+  def full_name 
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
 end

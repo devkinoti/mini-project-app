@@ -14,4 +14,6 @@
 class Project < ApplicationRecord
   acts_as_tenant(:account)
   belongs_to :user
+
+  has_many :tasks
 end

@@ -1,7 +1,21 @@
-<div id="<%= dom_id project %>">
-  <p>
-    <strong>User:</strong>
-    <%= project.project_name %>
-  </p>
 
-</div>
+  <h6 class="fs-0 mb-0">
+    <%= @project.project_name %>
+    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified">
+      <small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small>
+    </span>
+  </h6>
+  <div class="collapse show" id="client-info">
+    <p class="mb-0"><%= @project.description %></p>
+    <p class="mb-1"><%= @project.project_number %></p>
+
+    <div class="border-dashed-bottom my-3"></div>
+    <small class="text-500">Actions</small>
+    <div>
+      <%= link_to "Edit",edit_project_path(@project),class: "btn btn-primary btn-sm me-1 mb-1", data: { turbo: false } %>
+      <%= link_to "Destroy", project_path(@project), class: "btn btn-danger btn-sm me-1 mb-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </div>
+  </div>
+
+
+

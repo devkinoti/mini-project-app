@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_073826) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_142322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
@@ -33,6 +33,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_073826) do
     t.uuid "account_id", null: false
     t.index ["account_id"], name: "index_projects_on_account_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "tasks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "project_id", null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "end_date"
+    t.datetime "start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "account_id", null: false
+    t.index ["account_id"], name: "index_tasks_on_account_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+  end
+
+  create_table "tasks_team_members", force: :cascade do |t|
+    t.uuid "task_id"
+    t.uuid "team_member_id"
+    t.index ["task_id"], name: "index_tasks_team_members_on_task_id"
+    t.index ["team_member_id"], name: "index_tasks_team_members_on_team_member_id"
   end
 
   create_table "team_members", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -98,5 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_073826) do
   add_foreign_key "accounts", "users"
   add_foreign_key "projects", "accounts"
   add_foreign_key "projects", "users"
+  add_foreign_key "tasks", "accounts"
+  add_foreign_key "tasks", "projects"
   add_foreign_key "team_members", "accounts"
 end

@@ -11,12 +11,13 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.order(created_at: :desc)
+    @pagy, @projects = pagy(Project.order(created_at: :desc), items: 10)
   end
 
   # GET /projects/1 or /projects/1.json
   def show
-    load_project
+    @project = load_project
+    @tasks = @project.tasks
   end
 
   # GET /projects/new
@@ -34,6 +35,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user = current_user
+    @project = ProjectUniqueNumber.new.create_project_number(@project)
 
 
     respond_to do |format|
