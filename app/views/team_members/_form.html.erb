@@ -1,42 +1,62 @@
-<%= form_with(model: team_member, data: { turbo: false }) do |form| %>
-  <% if team_member.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(team_member.errors.count, "error") %> prohibited this team_member from being saved:</h2>
-
-      <ul>
-        <% team_member.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="card mb-3">
+  <div class="card-header">
+    <div class="row flex-between-end">
+      <div class="col-auto align-self-center">
+        <h5 class="mb-0" data-anchor="data-anchor">Team Member Details</h5>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
   </div>
 
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
-  </div>
+  <div class="card-body bg-light">
+    <%= form_with(model: team_member, autocomplete: "off", data: { turbo: false }) do |form| %>
+      <% if team_member.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(team_member.errors.count, "error") %> prohibited this team_member from being saved:</h2>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
+          <ul>
+            <% team_member.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.text_field :password %>
-  </div>
 
-  <div class="form-check">
-    <%= form.check_box :terms_agreement, class: "form-check-input", id: "basic-register-checkbox" %>
-    <%= form.label :terms_agreement, ("I accept the #{ link_to "terms", "#", target: "_blank"} and #{ link_to "privacy policy", "#", target: "_blank"}").html_safe, class: "form-label" %>
-  </div> 
+      <div class="row gx-2">
+        <div class="col-6 mb-3">
+          <%= form.label :first_name, class: "form-label" %>
+          <%= form.text_field :first_name, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.submit %>
+        <div class="col-6 mb-3">
+          <%= form.label :last_name, class: "form-label" %>
+          <%= form.text_field :last_name, class: "form-control" %>
+        </div>
+
+        <div class="col-12 mb-3">
+          <%= form.label :email, class: "form-label" %>
+          <%= form.email_field :email, class: "form-control", autocomplete: "false"  %>
+        </div>
+
+        <div class="col-12 mb-3">
+          <%= form.label :password, class: "form-label" %>
+          <%= form.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-check">
+        <%= form.check_box :terms_agreement, class: "form-check-input", id: "basic-register-checkbox" %>
+        <%= form.label :terms_agreement, ("I accept the #{ link_to "terms", "#", target: "_blank"} and #{ link_to "privacy policy", "#", target: "_blank"}").html_safe, class: "form-label" %>
+      </div> 
+
+      <div>
+        <%= form.submit class: "btn btn-primary" %>
+        <% if team_member.persisted? %>
+          <%= link_to "Cancel", team_member_path(@team_member), class: "btn btn-secondary me-1" %>
+        <%else%>
+          <%= link_to "Back to team members", team_members_path, class: "btn btn-secondary me-1"%>
+        <%end%>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

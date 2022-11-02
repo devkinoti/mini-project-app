@@ -10,11 +10,23 @@ class TeamMembersController < ApplicationController
 
 
   def index 
-    @team_members = TeamMember.order(:email)
+    @pagy, @team_members = pagy(TeamMember.order(created_at: :desc), items: 10)
   end
 
   def new 
     @team_member = TeamMember.new
+  end
+
+  def show 
+    @team_member = TeamMember.find(params[:id])
+  end
+
+  def edit
+
+  end
+
+  def update
+    
   end
 
 
