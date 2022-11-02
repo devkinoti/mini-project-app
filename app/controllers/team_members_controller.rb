@@ -22,11 +22,11 @@ class TeamMembersController < ApplicationController
   end
 
   def edit
-
+    @team_member = TeamMember.find(params[:id])
   end
 
   def update
-    
+
   end
 
 
@@ -47,7 +47,7 @@ class TeamMembersController < ApplicationController
   private
 
   def team_member_params
-    params.require(:team_member).permit(:first_name, :last_name, :email, :password, :terms_agreement)
+    params.require(:team_member).permit(:first_name, :last_name, :email, :password, :terms_agreement, role_ids: [])
   end
 
   def set_current_account 

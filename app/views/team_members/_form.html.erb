@@ -42,12 +42,24 @@
           <%= form.label :password, class: "form-label" %>
           <%= form.password_field :password, class: "form-control" %>
         </div>
-      </div>
 
-      <div class="form-check">
-        <%= form.check_box :terms_agreement, class: "form-check-input", id: "basic-register-checkbox" %>
-        <%= form.label :terms_agreement, ("I accept the #{ link_to "terms", "#", target: "_blank"} and #{ link_to "privacy policy", "#", target: "_blank"}").html_safe, class: "form-label" %>
-      </div> 
+        <div class="form-check">
+          
+          <%= form.collection_check_boxes(:role_ids, Role.all, :id, :name) do |b| %>
+            <%= b.check_box(class: "form-check-input") %>
+            <%= b.label(class: "form-check-label") %>
+         
+          <%end%>
+          
+        </div> 
+
+
+        <div class="form-check">
+          <%= form.check_box :terms_agreement, class: "form-check-input" %>
+          <%= form.label :terms_agreement, ("I accept the #{ link_to "terms", "#", target: "_blank"} and #{ link_to "privacy policy", "#", target: "_blank"}").html_safe, class: "form-label" %>
+        </div> 
+
+      </div>
 
       <div>
         <%= form.submit class: "btn btn-primary" %>

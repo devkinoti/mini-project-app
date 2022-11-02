@@ -1,0 +1,17 @@
+  <h6 class="fs-0 mb-0">
+    <%= @team_member.full_name %>
+    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified">
+      <small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small>
+    </span>
+  </h6>
+  <div class="collapse show" id="client-info">
+    <p class="mb-0"><%= @team_member.email %></p>
+    <p class="mb-1"><%= @team_member.created_at %></p>
+
+    <div class="border-dashed-bottom my-3"></div>
+    <small class="text-500">Actions</small>
+    <div>
+      <%= link_to "Edit",edit_team_member_path(@team_member),class: "btn btn-primary btn-sm me-1 mb-1", data: { turbo: false } %>
+      <%= link_to "Destroy", team_member_path(@team_member), class: "btn btn-danger btn-sm me-1 mb-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </div>
+  </div>

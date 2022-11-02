@@ -1,0 +1,46 @@
+<div class="card-body py-0">
+  <div class="table-responsive scrollbar">
+    <table class="table table-dashboard mb-0 fs--1">
+      <tr>
+        <td class="align-middle ps-0 text-nowrap">
+          <div class="d-flex position-relative align-items-center">
+
+            <div class="flex-1">
+              
+              <%= link_to project_task_path(@project, task) ,class: "stretched-link" do %>
+                <p class="text-primary mb-0">
+                  <%= truncate(task.name, length: 35, omission:"...") %> Task
+                </p>
+              <%end%>
+                <small class="fs--1 mb-0">
+                  <span class="text-black">Total Team Members:</span> <%= task.team_members.count %>
+                </small><br>
+                <small class="fs--1 mb-0">
+                  Start Date: <%= task.start_date.strftime("%d %b %Y at %H:%M %p") %>
+                </small><br>
+
+                <small class="fs--1 mb-0">
+                  End Date: <%= task.end_date.strftime("%d %b %Y at %H:%M %p") %>
+                </small><br>
+              
+                <small class="mb-0">
+                      
+                  Created | Edited by 
+                  <span class="text-700"><%= task.project.user.full_name %></span>
+  
+                </small>
+              
+            </div>
+          </div>
+        </td>
+        
+        <td class="align-middle px-1 text-end text-nowrap" style="width:1%;">
+          <%= link_to  "View", project_task_path(@project, task), class: "btn btn-success btn-sm me-1" %>
+        </td>
+
+      </tr>
+
+    </table>
+  </div>
+</div>
+

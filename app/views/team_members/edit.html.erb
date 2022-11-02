@@ -1,0 +1,29 @@
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation" %>
+
+      <!-- main content for clients index -->
+      <div class="card mb-3">
+        <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<%= asset_path "illustrations/corner-4.png" %>);">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="card-body position-relative">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>Edit Team Member</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= render "form", team_member: @team_member %>
+
+
+      
+    </div>
+    
+  </div>
+</main>
