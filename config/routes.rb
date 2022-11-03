@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'pricing', to: 'pages#pricing', as: :pricing
 
   resources :projects do 
-    resources :tasks 
+    resources :tasks do 
+      member do 
+        patch "remove_team_member"
+      end
+    end
   end
   resources :team_members
 

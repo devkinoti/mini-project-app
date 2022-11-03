@@ -7,11 +7,14 @@
 
             <div class="flex-1">
               
-              <%= link_to project_task_path(@project, task) ,class: "stretched-link" do %>
-                <p class="text-primary mb-0">
-                  <%= truncate(task.name, length: 35, omission:"...") %> Task
-                </p>
-              <%end%>
+                <%= link_to project_task_path(@project, task) ,class: "stretched-link" do %>
+                  <p class="text-primary mb-0">
+                    <%= truncate(task.name, length: 35, omission:"...") %> Task
+                  </p>
+                <%end%>
+                <small class="fs--1 mb-0">
+                  <span class="text-black">Task Status:</span>&nbsp;<span class="badge rounded-pill badge-soft-info"><%= task.status %></span>
+                </small><br>
                 <small class="fs--1 mb-0">
                   <span class="text-black">Total Team Members:</span> <%= task.team_members.count %>
                 </small><br>

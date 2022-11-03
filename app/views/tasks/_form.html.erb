@@ -42,6 +42,15 @@
         </div>
 
         <div class="col-12 mb-3">
+          <%= form.label :task_status, class: "form-label" %>
+          <%= form.select :status, 
+                          options_for_select(Task::TASK_STATUS, selected: task.status),
+                          { prompt: "Select task status" },
+                          class: "form-select"
+                          %>
+        </div>
+
+        <div class="col-12 mb-3">
           <%= form.label :assign_team_members_to_task, class: "form-label" %>
           <%= form.select :team_member_ids, 
                           options_from_collection_for_select(TeamMember.all,:id, :full_name, selected: task.team_member_ids),

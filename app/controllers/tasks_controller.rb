@@ -27,7 +27,6 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    byebug
     @project = Project.find(params[:project_id])
     @task = @project.tasks.build(task_params)
 
@@ -49,7 +48,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to project_path(@project), notice: "Task was successfully updated." }
+        format.html { redirect_to project_task_path(@project, @task), notice: "Task was successfully updated." }
       
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,6 +67,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def remove_team_member 
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.find(params[:id])
+
+    respond_to do |format|
+      @task.team_members.delete(params[:team_member_id])
+      format.html { redirect_to project_task_path(@project, @task), notice: "Team Member has been successfully removed from the task" }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -82,6 +91,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :end_date, :start_date, team_member_ids: [])
+      params.require(:task).permit(:name, :description, :end_date, :start_date, :status, team_member_ids: [])
     end
 end
