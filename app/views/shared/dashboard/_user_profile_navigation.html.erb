@@ -27,7 +27,7 @@
         <%end%>
 
         <div class="dropdown-divider"></div>
-        <%= link_to "Your profile", "#", class: "dropdown-item" %>
+        <%= link_to "Your profile", profile_path(current_project_member), class: "dropdown-item" %>
       
         <%= link_to "Activity History", activities_index_path, class: "dropdown-item" %>
         <!-- <a class="dropdown-item" href="#!">Notifications</a> -->

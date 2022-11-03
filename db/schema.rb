@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_143044) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_151654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
@@ -31,9 +31,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_143044) do
     t.string "key"
     t.text "parameters"
     t.string "recipient_type"
-    t.bigint "recipient_id"
+    t.uuid "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "account_id", null: false
+    t.index ["account_id"], name: "index_activities_on_account_id"
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
     t.index ["owner_type", "owner_id"], name: "index_activities_on_owner"
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
@@ -136,6 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_143044) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "activities", "accounts"
   add_foreign_key "projects", "accounts"
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "accounts"

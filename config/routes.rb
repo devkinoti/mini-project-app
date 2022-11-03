@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
   get 'activities/index'
+  get 'profile/:id', to: "profile#show", as: :profile
 
   get 'pricing', to: 'pages#pricing', as: :pricing
 

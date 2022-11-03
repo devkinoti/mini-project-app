@@ -1,0 +1,56 @@
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation"%>
+      <%= render "layouts/flash" %>
+
+
+      <div class="card mb-3">
+        <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<%= asset_path "illustrations/corner-4.png" %>);">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="card-body position-relative">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>Your Professional Details</h3>
+              <p class="mb-0">Below you can update your professional details</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h5 class="mb-0 text-success fw-normal" id="measurements">Your Professional Profile</h5>
+          
+        </div>
+      </div>
+
+      <!-- personal details -->
+
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Personal Details</h5>
+        </div>
+        <div class="card-body text-justify">       
+          <%= current_user.first_name %>
+
+          <%= link_to "Edit your account", edit_user_registration_path %>
+        </div>
+
+      </div>
+
+      <!-- end of personal details -->
+
+      
+
+
+
+  
+
+
+    </div>
+  </div>
+</main>
