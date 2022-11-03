@@ -20,8 +20,12 @@ class Task < ApplicationRecord
   has_and_belongs_to_many :team_members
 
   # validations
-  validates :name, :description, :end_date, :start_date, :status, presence: true 
+  validates :name, :description, :status, presence: true
   
+  # time validations
+  validates :start_date, comparison: { less_than: :end_date, message: "for the task can't be after the task's end date" }
+  validates :end_date, comparison: { greater_than: :start_date, message: "for the task can't be before the task's start date"}
+
 
   TASK_STATUS = [
     "Not Started",

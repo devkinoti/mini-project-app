@@ -87,3 +87,4 @@ gem "acts_as_tenant"
 
 # resources pagination
 gem "pagy"
+
