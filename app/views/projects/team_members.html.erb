@@ -1,3 +1,60 @@
 <%= turbo_frame_tag "frame_tabs", autoscroll: true, data: { autoscroll_block: "start", autoscroll_behavior: "smooth"}  do %>
-sample
+  <div class="row g-0" id="client-data">  
+    <div class="card mb-3">
+      <div class="card-header bg-light">
+        <h5 class="mb-0 text-info fw-normal" id="measurements">List of team members for <%= @project.project_name %></h5>
+        
+      </div>
+    </div>
+
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="table-responsive fs--1">
+          <table class="table table-striped border-bottom">
+            <thead class="bg-200 text-900">
+              <tr>
+                <th class="border-0">Team Member</th>
+                <th class="border-0 text-center">Task</th>
+                <th class="border-0 text-end">Task Status</th>
+                <th class="border-0 text-end">Task Start Date</th>
+                <th class="border-0 text-end">Task End Date</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @tasks.each do |task| %>
+              <% task.team_members.each do |team_member| %>
+                <tr class="border-200">
+                  <td class="align-middle">
+                    <h6 class="mb-0 text-nowrap"><%= team_member.full_name %></h6>
+                    <p class="mb-0">Role</p>
+                  </td>
+                  <td class="align-middle text-center"><%= task.name %></td>
+                  <td class="align-middle text-end"><span class="badge badge-soft-info"><%= task.status %></span></td>
+                  <td class="align-middle text-end"><%= task.start_date.strftime("%d %b %Y at %H:%M %p") %></td>
+                  <td class="align-middle text-end"><%= task.end_date.strftime("%d %b %Y at %H:%M %p") %></td>
+                </tr>
+              <%end%>
+            <%end%>
+ 
+            </tbody>
+          </table>
+        </div>
+        <div class="row g-0 justify-content-end">
+          <div class="col-auto">
+            <table class="table table-sm table-borderless fs--1 text-end">
+              <tr>
+                <th class="text-900">Total Tasks</th>
+                <td class="fw-semi-bold"><%= @tasks.count %></td>
+              </tr>
+              <tr class="border-top">
+                <th class="text-900">Total Team Members on this project</th>
+                <td class="fw-semi-bold"><%= @total %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <%end%>

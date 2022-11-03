@@ -79,6 +79,17 @@ class ProjectsController < ApplicationController
     @project = load_project
   end
 
+  def team_members 
+    @project = load_project
+    @tasks = @project.tasks 
+    @total = []
+    @tasks.each do |task| 
+      @total << task.team_members.pluck(:id)
+    end
+    @total = @total.flatten!(-1).uniq!.count
+    
+  end
+
   def project_report
     @project = load_project 
 
