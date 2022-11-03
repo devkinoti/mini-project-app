@@ -29,13 +29,19 @@
 #
 class TeamMember < ApplicationRecord
   acts_as_tenant(:account)
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :lockable, :confirmable
 
 
+  # associations
   has_and_belongs_to_many :tasks
+
+  # validations
+  validates :first_name, :last_name, :email, presence: true
+  validates :email, uniqueness: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create } 
+  validates_acceptance_of :terms_agreement, allow_nil: false, on: :create
 
   def full_name 
     "#{first_name.capitalize} #{last_name.capitalize}"

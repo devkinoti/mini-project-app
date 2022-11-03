@@ -33,7 +33,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable, :lockable, :confirmable
 
 
-  validates_acceptance_of :terms_agreement, allow_nil: false, on: :create 
+
+  # validations
+  validates :first_name, :last_name, :email, presence: true
+  validates :email, uniqueness: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create } 
+  validates_acceptance_of :terms_agreement, allow_nil: false, on: :create
+
 
   # associations
   has_one :account

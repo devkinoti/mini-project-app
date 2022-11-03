@@ -10,12 +10,12 @@
   <div class="card-body bg-light">
     <%= form_with(model: team_member, autocomplete: "off", data: { turbo: false }) do |form| %>
       <% if team_member.errors.any? %>
-        <div style="color: red">
-          <h2><%= pluralize(team_member.errors.count, "error") %> prohibited this team_member from being saved:</h2>
+        <div>
+          <h6 class="fw-normal text-700"><%= pluralize(team_member.errors.count, "error") %> prohibited this team_member from being saved:</h6>
 
           <ul>
             <% team_member.errors.each do |error| %>
-              <li><%= error.full_message %></li>
+              <li><span class="badge bg-danger"><%= error.full_message %></span></li>
             <% end %>
           </ul>
         </div>

@@ -19,6 +19,10 @@ class Task < ApplicationRecord
 
   has_and_belongs_to_many :team_members
 
+  # validations
+  validates :name, :description, :end_date, :start_date, :status, presence: true 
+  
+
   TASK_STATUS = [
     "Not Started",
     "In progress",

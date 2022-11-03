@@ -16,4 +16,8 @@ class Project < ApplicationRecord
   belongs_to :user
 
   has_many :tasks
+
+  # validations
+  validates :project_name, presence: true 
+  validates :description, presence: true
 end
