@@ -79,9 +79,6 @@ gem "devise"
 # Annotate models
 gem "annotate"
 
-# friendly url 
-gem 'friendly_id', '~> 5.4.0'
-
 # multi tenancy based on row-tenancy
 gem "acts_as_tenant"
 
@@ -96,3 +93,6 @@ gem "wkhtmltopdf-binary"
 
 # groupby gem for dates
 gem "groupdate"
+
+# public activity tracking
+gem "public_activity"

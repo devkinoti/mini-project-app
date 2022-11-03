@@ -20,4 +20,15 @@ class Project < ApplicationRecord
   # validations
   validates :project_name, presence: true 
   validates :description, presence: true
+
+  # Public activity tracking
+  include PublicActivity::Model 
+  tracked owner: Proc.new { |controller, model| controller.current_user }
+  
+
+  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+
+  def to_s
+    project_name
+  end
 end

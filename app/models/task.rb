@@ -19,6 +19,12 @@ class Task < ApplicationRecord
 
   has_and_belongs_to_many :team_members
 
+  # Public activity tracking
+  include PublicActivity::Model 
+  tracked owner: Proc.new { |controller, model| controller.current_project_member }
+
+  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+
   # validations
   validates :name, :description, :status, presence: true
   
@@ -32,4 +38,8 @@ class Task < ApplicationRecord
     "In progress",
     "Complete"
   ]
+
+  def to_s
+    name
+  end
 end

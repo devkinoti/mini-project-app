@@ -1,0 +1,33 @@
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <%= render "shared/dashboard_sidebar" %>
+    <div class="content">
+      <%= render "shared/utilities_navigation"%>
+      <%= render "layouts/flash" %>
+
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Your LedgerCub Activity Log</h5>
+        </div>
+        <div class="card-body fs--1 p-0">
+          <% @activities.each do |activity| %>
+            <div class= "border-bottom-0 notification rounded-0 border-x-0 border border-300">
+              <div class="notification-avatar">
+                <div class="avatar avatar-xl me-3">
+                  <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🔍</span></div>
+                </div>
+              </div>
+              <div class="notification-body">
+                <p class="mb-1"><strong><%= activity.trackable %></strong> <%= activity.key %> <strong>performed by <%= activity.owner %> </strong></p>
+                <span class="notification-time"><%= activity.created_at.strftime("%d %b %Y at %H:%M %p")  %></span>
+              </div>
+            </div>
+            
+          <%end%>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>

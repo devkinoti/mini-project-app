@@ -37,6 +37,12 @@ class TeamMember < ApplicationRecord
   # associations
   has_and_belongs_to_many :tasks
 
+  # Public activity tracking
+  include PublicActivity::Model 
+  tracked owner: Proc.new { |controller, model| controller.current_project_member }
+
+  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+
   # validations
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
@@ -45,5 +51,9 @@ class TeamMember < ApplicationRecord
 
   def full_name 
     "#{first_name.capitalize} #{last_name.capitalize}"
+  end
+
+  def to_s
+    "#{first_name} #{last_name}"
   end
 end

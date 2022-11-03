@@ -86,7 +86,7 @@ class ProjectsController < ApplicationController
     @tasks.each do |task| 
       @total << task.team_members.pluck(:id)
     end
-    @total = @total.flatten!(-1).uniq!.count
+    @total = @total&.flatten!(-1)&.uniq!&.count
     
   end
 
