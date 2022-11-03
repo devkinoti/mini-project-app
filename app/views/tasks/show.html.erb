@@ -17,6 +17,7 @@
             <div class="col-lg-8">
               <h3>Task for <%= @project.project_name %></h3>
               <span class="badge badge-soft-info"><%= @task.status %></span>
+              <div class="mt-2"><%= link_to "Back to Project", project_path(@project), class: "btn btn-falcon-info btn-sm px-3 " %></div>
             </div>
           </div>
         </div>

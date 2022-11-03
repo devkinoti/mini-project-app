@@ -75,6 +75,27 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def reports
+    @project = load_project
+  end
+
+  def project_report
+    @project = load_project 
+
+    respond_to do |format|
+      format.html 
+      format.pdf do 
+        render pdf: "Ledger Cub Project Report",
+               template: "projects/project_report",
+               formats: [:html],
+               dispostion: :inline,
+               type: "application/pdf",
+               layout: "project_report_pdf"
+
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_project

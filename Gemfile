@@ -88,3 +88,9 @@ gem "acts_as_tenant"
 # resources pagination
 gem "pagy"
 
+
+# wicked pdf gem to create pdf out of html
+gem "wicked_pdf"
+
+# binary for working on local machine
+gem "wkhtmltopdf-binary"

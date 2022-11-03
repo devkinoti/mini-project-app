@@ -72,7 +72,7 @@
               
               <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-info" data-countup='{"endValue":23.434,"decimalPlaces":2,"suffix":"k"}'>
                 <%= link_to "Team Members", 
-                    "#", 
+                    team_members_project_path(@project), 
                     class: "text-info",
                     data: { turbo_frame: "frame_tabs"}
                       %>
@@ -93,7 +93,7 @@
               </h6>
               <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif">
                 <%= link_to "Reports", 
-                    "#", 
+                    reports_project_path(@project), 
                     class: "text-success",
                     data: { turbo_frame: "frame_tabs"}
                       %>

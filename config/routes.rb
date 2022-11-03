@@ -11,7 +11,14 @@ Rails.application.routes.draw do
         patch "remove_team_member"
       end
     end
+
+    member do 
+      get "team_members"
+      get "reports"
+      get "project_report"
+    end
   end
+
   resources :team_members
 
   devise_for :users

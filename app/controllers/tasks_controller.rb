@@ -17,12 +17,16 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.build
+
+    @available_team_members = TeamMemberTaskManager.new.team_member_task_manager(TeamMember.all)
   end
 
   # GET /tasks/1/edit
   def edit
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
+
+    @available_team_members = TeamMemberTaskManager.new.team_member_task_manager(TeamMember.all)
   end
 
   # POST /tasks or /tasks.json

@@ -53,7 +53,7 @@
         <div class="col-12 mb-3">
           <%= form.label :assign_team_members_to_task, class: "form-label" %>
           <%= form.select :team_member_ids, 
-                          options_from_collection_for_select(TeamMember.all,:id, :full_name, selected: task.team_member_ids),
+                          options_from_collection_for_select(@available_team_members,:id, :full_name, selected: task.team_member_ids),
                           { include_blank: false }, 
                           id: "multiple",
                           multiple: "multiple",

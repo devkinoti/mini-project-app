@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/devkinoti/validates_timeliness
-  revision: 978bfce2532d450d7234e70843037c654a0f7b0a
-  specs:
-    validates_timeliness (6.0.0)
-      activemodel (>= 7.0.0)
-      timeliness (>= 0.3.10, < 1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -211,7 +203,6 @@ GEM
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     thor (1.2.1)
-    timeliness (0.4.4)
     timeout (0.3.0)
     turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
@@ -234,6 +225,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.6.3)
+      activesupport
+    wkhtmltopdf-binary (0.12.6.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.1)
@@ -262,9 +256,10 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
-  validates_timeliness!
   web-console
   webdrivers
+  wicked_pdf
+  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 3.1.1p18
