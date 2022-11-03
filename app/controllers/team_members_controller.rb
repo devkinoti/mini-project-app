@@ -26,6 +26,20 @@ class TeamMembersController < ApplicationController
   end
 
   def update
+    if params[:team_member][:password].blank? 
+      params[:team_member].delete(:password)
+    end
+
+
+    @team_member = TeamMember.find(params[:id])
+
+    respond_to do |format|
+      if @team_member.update(team_member_params)
+        format.html { redirect_to team_member_path(@team_member), notice: "Team member was successfully updated" }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
 
   end
 

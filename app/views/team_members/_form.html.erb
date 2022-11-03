@@ -43,15 +43,7 @@
           <%= form.password_field :password, class: "form-control" %>
         </div>
 
-        <div class="form-check">
-          
-          <%= form.collection_check_boxes(:role_ids, Role.all, :id, :name) do |b| %>
-            <%= b.check_box(class: "form-check-input") %>
-            <%= b.label(class: "form-check-label") %>
-         
-          <%end%>
-          
-        </div> 
+
 
 
         <div class="form-check">
