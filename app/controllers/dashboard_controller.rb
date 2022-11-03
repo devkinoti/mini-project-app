@@ -8,6 +8,15 @@ class DashboardController < ApplicationController
 
   
   def index
+    total_projects_by_month = Project.group_by_month_of_year(:created_at).count 
+
+    @month_names = []
+
+    total_projects_by_month.keys.each do |key|
+      @month_names << Date::MONTHNAMES[key]
+    end
+
+    @monthly_project_total = total_projects_by_month.values
     
   end
 end
