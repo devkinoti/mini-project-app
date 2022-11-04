@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe TeamMember, type: :model do
-  it "has custom attributes" do 
-    user = User.create!(
+  before(:example) do 
+    @user = User.create!(
       first_name: "sample",
       last_name: "sample",
       terms_agreement: true,
@@ -10,7 +10,8 @@ RSpec.describe TeamMember, type: :model do
       password: "password", 
       password_confirmation: "password"
     )
-
+  end
+  it "has custom attributes" do 
     project_member = TeamMember.new(
       first_name: "sample",
       last_name: "sample",
@@ -18,7 +19,7 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail.com", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member).to be_valid
@@ -39,15 +40,6 @@ RSpec.describe TeamMember, type: :model do
   end
 
   it "has a first name" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project_member = TeamMember.new(
       first_name: "",
       last_name: "sample",
@@ -55,22 +47,13 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail.com", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member).to_not be_valid
   end
 
   it "has a last name" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project_member = TeamMember.new(
       first_name: "sample",
       last_name: "",
@@ -78,7 +61,7 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail.com", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member).to_not be_valid
@@ -86,15 +69,6 @@ RSpec.describe TeamMember, type: :model do
   end
 
   it "terms and agreement must be accepted" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project_member = TeamMember.new(
       first_name: "sample",
       last_name: "sample",
@@ -102,22 +76,13 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail.com", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member).to_not be_valid
   end
 
   it "has a valid email address" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project_member = TeamMember.new(
       first_name: "sample",
       last_name: "sample",
@@ -125,24 +90,14 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail..gmail.com.au", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member).to_not be_valid
   end
 
   PublicActivity.with_tracking do 
-
     it "has a unique email address" do 
-      user = User.create!(
-        first_name: "sample",
-        last_name: "sample",
-        terms_agreement: true,
-        email: "sample@gmail.com", 
-        password: "password", 
-        password_confirmation: "password"
-      )
-
       first_project_member = TeamMember.create!(
         first_name: "sample",
         last_name: "sample",
@@ -150,10 +105,8 @@ RSpec.describe TeamMember, type: :model do
         email: "sample@gmail.com", 
         password: "password", 
         password_confirmation: "password",
-        account: user.account
+        account: @user.account
       )
-
-
 
       project_member = TeamMember.new(
         first_name: "sample",
@@ -162,7 +115,7 @@ RSpec.describe TeamMember, type: :model do
         email: "sample@gmail.com", 
         password: "password", 
         password_confirmation: "password",
-        account: user.account
+        account: @user.account
       )
 
       expect(project_member).to_not be_valid
@@ -171,15 +124,6 @@ RSpec.describe TeamMember, type: :model do
 
 
   it "displays a capitalized full name" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project_member = TeamMember.new(
       first_name: "sample",
       last_name: "sample",
@@ -187,22 +131,13 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail.com", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member.full_name).to eq("Sample Sample")
   end
 
   it "display the team members name by default" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project_member = TeamMember.new(
       first_name: "sample",
       last_name: "sample",
@@ -210,11 +145,9 @@ RSpec.describe TeamMember, type: :model do
       email: "sample@gmail.com", 
       password: "password", 
       password_confirmation: "password",
-      account: user.account
+      account: @user.account
     )
 
     expect(project_member.to_s).to eq("sample sample")
-
-
   end
 end
