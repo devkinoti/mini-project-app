@@ -36,6 +36,7 @@ RSpec.describe "ViewingProjects", type: :system do
     fill_in "Description", with: "Sample description"
     click_button "Create Project"
     expect(Project.count).to eq(1)
+   
   end
 
   def go_to_projects_page
