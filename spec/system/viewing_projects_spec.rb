@@ -48,7 +48,7 @@ RSpec.describe "ViewingProjects", type: :system do
   def sign_up 
     visit root_url 
 
-    click_link "Sign in"
+    click_link "Sign in as account owner"
     click_link "Create a new account"
 
     fill_in "First Name", with: "Kurosaki"
