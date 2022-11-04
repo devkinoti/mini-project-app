@@ -18,7 +18,7 @@
                 </div>
               </div>
               <div class="notification-body">
-                <p class="mb-1"><strong><%= activity.trackable %></strong> <%= activity.key %> <strong>performed by <%= activity.owner %> </strong></p>
+                <p class="mb-1"><strong><%= activity.trackable %></strong> <%= activity.key %> <strong>performed by <%= activity.owner.user %> </strong></p>
                 <span class="notification-time"><%= activity.created_at.strftime("%d %b %Y at %H:%M %p")  %></span>
               </div>
             </div>

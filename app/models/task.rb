@@ -21,8 +21,8 @@ class Task < ApplicationRecord
 
   # Public activity tracking
   include PublicActivity::Model 
-  tracked owner: Proc.new { |controller, model| controller.current_project_member }
-  tracked account: Proc.new { |controller, model| controller.current_project_member.account }
+  tracked owner: Proc.new { |controller, model| controller.current_tenant }
+    
 
   has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
 

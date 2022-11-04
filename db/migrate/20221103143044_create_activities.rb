@@ -16,6 +16,7 @@ class CreateActivities < ActiveRecord::Migration[7.0]
     add_index :activities, %i[trackable_id trackable_type]
     add_index :activities, %i[owner_id owner_type]
     add_index :activities, %i[recipient_id recipient_type]
+    # add_index :activities, %i[account_id, account_type]
   end
 
   # Drop table

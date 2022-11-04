@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
   before_action :authenticate_project_member!
 
   def index
-    @activities = PublicActivity::Activity.order(created_at: :desc)
+    @activities = PublicActivity::Activity.order(created_at: :desc).where(owner: current_user.account)
   end
 
 

@@ -6,11 +6,12 @@
       </div>
       <div class="col-8 col-sm-auto text-end ps-2">
         <div id="table-customers-replace-element">
-        
+        <% if user_signed_in? %>
           <%= link_to new_project_path, class: "btn btn-falcon-default btn-sm" do %>
             <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
             <span class="d-none d-sm-inline-block ms-1">New</span>
           <%end%>
+        <%end%>
 
 
         </div>

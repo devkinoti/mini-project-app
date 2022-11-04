@@ -123,9 +123,11 @@
           <div class="card mb-3">
             <div class="card-header bg-light d-flex justify-content-between">
               <h5 class="mb-0 text-warning fw-normal">Project Tasks</h5>
-              <%= link_to new_project_task_path(@project), class: "btn btn-falcon-default btn-sm", data: {turbo: false } do %>
-                <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
-                <span class="d-none d-sm-inline-block ms-1">New</span>
+              <% if user_signed_in? %>
+                <%= link_to new_project_task_path(@project), class: "btn btn-falcon-default btn-sm", data: {turbo: false } do %>
+                  <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
+                  <span class="d-none d-sm-inline-block ms-1">New</span>
+                <%end%>
               <%end%>
             </div>
 

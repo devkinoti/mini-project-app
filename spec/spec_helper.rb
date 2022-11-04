@@ -37,6 +37,31 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # config.before(:suite) do |example|
+  #   $default_account = User.create!(
+  #     first_name: "sample",
+  #     last_name: "sample",
+  #     terms_agreement: true,
+  #     email: "accountmaster2@gmail.com", 
+  #     password: "password", 
+  #     password_confirmation: "password"
+  #   ).account 
+
+  # end
+
+  # config.before(:each) do |example|
+  #   if example.metadata[:type] == :request
+  #     ActsAsTenant.test_tenant = $default_account
+  #   else
+  #     ActsAsTenant.current_tenant = $default_account
+  #   end
+  # end
+
+  # config.after(:each) do |example|
+  #   ActsAsTenant.current_tenant = nil 
+  #   ActsAsTenant.test_tenant = nil
+  # end
+
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be
