@@ -18,7 +18,14 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.build
 
-    @available_team_members = TeamMemberTaskManager.new.team_member_task_manager(TeamMember.all)
+    @available_team_members = []
+    TeamMember.all.each do |team_member|
+      if team_member.tasks.count < 5
+        @available_team_members << team_member
+      end
+    end
+    byebug
+    @available_team_members
   end
 
   # GET /tasks/1/edit

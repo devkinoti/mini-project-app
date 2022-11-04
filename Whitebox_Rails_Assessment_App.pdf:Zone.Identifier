@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://www.notion.so/
+HostUrl=https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-fd6804e9-e44c-496d-8d68-7c5e94dedda8/Whitebox_Rails_Assessment_App.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221104%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221104T144635Z&X-Amz-Expires=604800&X-Amz-Signature=8f910b642390151a71d934a79bd3d1e996f582e87ef72f977ef734e45c7ffc9c&X-Amz-SignedHeaders=host&x-id=GetObject

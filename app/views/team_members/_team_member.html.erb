@@ -9,9 +9,11 @@
     <p class="mb-1"><%= @team_member.created_at %></p>
 
     <div class="border-dashed-bottom my-3"></div>
+    <% if user_signed_in? %>
     <small class="text-500">Actions</small>
     <div>
       <%= link_to "Edit",edit_team_member_path(@team_member),class: "btn btn-primary btn-sm me-1 mb-1", data: { turbo: false } %>
       <%= link_to "Destroy", team_member_path(@team_member), class: "btn btn-danger btn-sm me-1 mb-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     </div>
+    <%end%>
   </div>

@@ -49,9 +49,11 @@
           <div class="card">
             <div class="card-header d-flex justify-content-between">
               <h5 class="mb-0 text-black fw-normal">Team Members for <%= @task.name %></h5>
+              <% if user_signed_in? %>
               <%= link_to edit_project_task_path(@project, @task), class: "btn btn-falcon-default btn-sm", data: {turbo: false } do %>
                 <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
                 <span class="d-none d-sm-inline-block ms-1">Add New Team Members</span>
+              <%end%>
               <%end%>
                
             </div>

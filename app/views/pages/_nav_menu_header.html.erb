@@ -37,17 +37,22 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <%= link_to "Pricing", pricing_path, class: "nav-link-item drop-trigger text-primary" %>
+               <%= link_to "Create an account", new_user_registration_path, class: "nav-link-item drop-trigger text-primary" %>
             </li>
             <li class="nav-item">
               <%= link_to "Sign in as team member", new_team_member_session_path, class: "nav-link-item drop-trigger text-primary" %>
             </li>
+            <li class="nav-item">
+               <%= link_to "Sign in as account owner", new_user_session_path, class: "nav-link-item drop-trigger text-primary" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign in as team member", new_team_member_session_path, class: "nav-link-item drop-trigger text-primary" %>
+            </li>
+
           </ul>
         </nav>
       </div>
-      <div class="header-btns  d-flex align-items-center justify-content-center flex-column flex-xs-row">
-          <%= link_to "Sign in", new_user_session_path, class: "btn h-45 btn-primary text-white rounded-55" %>
-      </div>
+
       <!-- mobile menu trigger -->
       <div class="mobile-menu-trigger">
           <span></span>

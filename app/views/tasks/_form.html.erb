@@ -55,19 +55,23 @@
           
           <span><%= link_to "Add new team member" , new_team_member_path, class: "btn btn-primary btn-sm me-1 mb-1"%></span>
           
+         
           <%= form.select :team_member_ids, 
                           options_from_collection_for_select(@available_team_members,:id, :full_name, selected: task.team_member_ids),
                           { include_blank: false }, 
                           id: "multiple",
                           multiple: "multiple",
                           size: 1 %>
+        
         </div>
       </div>
 
 
 
       <div>
-        <%= form.submit class: "btn btn-primary" %>
+       
+        <%= form.submit class: "btn btn-primary"  %>
+        
         <% if task.persisted? %>
           <%= link_to "Cancel", project_path(@project), class: "btn btn-secondary me-1" %> 
         <%else%>
