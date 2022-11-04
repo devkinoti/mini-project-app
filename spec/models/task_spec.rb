@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+  before(:example) do 
+    @user = User.create!(
+      first_name: "sample",
+      last_name: "sample",
+      terms_agreement: true,
+      email: "sample@gmail.com", 
+      password: "password", 
+      password_confirmation: "password"
+    )
+  end
+
   it "has a name" do 
     task = Task.new(
       name: nil,
@@ -101,20 +112,11 @@ RSpec.describe Task, type: :model do
   end
 
   it "belongs to a project" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project = Project.create!(
       project_name: "Sample Project",
       description: "Sample description",
-      account: user.account,
-      user: user,
+      account: @user.account,
+      user: @user,
       project_number: "sample-num-001"
     )
 
@@ -125,27 +127,18 @@ RSpec.describe Task, type: :model do
       end_date: Time.now + 1.day,
       status: Task::TASK_STATUS.first,
       project: nil,
-      account: user.account
+      account: @user.account
     )
 
     expect(task).to_not be_valid
   end
 
   it "belongs to an account" do 
-    user = User.create!(
-      first_name: "sample",
-      last_name: "sample",
-      terms_agreement: true,
-      email: "sample@gmail.com", 
-      password: "password", 
-      password_confirmation: "password"
-    )
-
     project = Project.create!(
       project_name: "Sample Project",
       description: "Sample description",
-      account: user.account,
-      user: user,
+      account: @user.account,
+      user: @user,
       project_number: "sample-num-001"
     )
 
