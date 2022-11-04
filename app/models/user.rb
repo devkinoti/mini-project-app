@@ -46,7 +46,7 @@ class User < ApplicationRecord
   has_many :projects, dependent: :destroy
 
   # call backs
-  before_validation :set_account 
+  before_create :set_account 
 
   def set_account
     self.build_account

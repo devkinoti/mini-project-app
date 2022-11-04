@@ -2,7 +2,11 @@
 
   <li class="nav-item">
     <div class="ps-2">
-      <%= current_project_member.first_name %>&nbsp;<%= current_project_member.last_name %>
+    <% if user_signed_in? %>
+      <%= current_user.first_name %>&nbsp;<%= current_user.last_name %>
+    <% elsif team_member_signed_in? %>
+      <%= current_team_member.first_name %>&nbsp;<%= current_team_member.last_name %>
+    <%end%>
     
       
     </div>
@@ -27,7 +31,11 @@
         <%end%>
 
         <div class="dropdown-divider"></div>
-        <%= link_to "Your profile", profile_path(current_project_member), class: "dropdown-item" %>
+        <% if user_signed_in? %>
+          <%= link_to "Your profile", profile_path(current_user), class: "dropdown-item" %>
+        <%elsif team_member_signed_in? %>
+          <%= link_to "Your profile", profile_path(current_team_member),class: "dropdown-item" %>
+        <%end%>
       
         <%= link_to "Activity History", activities_index_path, class: "dropdown-item" %>
         <!-- <a class="dropdown-item" href="#!">Notifications</a> -->

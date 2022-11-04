@@ -34,10 +34,17 @@
         <div class="card-header bg-light">
           <h5 class="mb-0">Personal Details</h5>
         </div>
-        <div class="card-body text-justify">       
+        <div class="card-body text-justify">
+        <% if user_signed_in? %>       
           <%= current_user.first_name %>
 
           <%= link_to "Edit your account", edit_user_registration_path %>
+        <%elsif team_member_signed_in? %>
+          <%= current_team_member.first_name %>
+
+          
+        <%end%>
+
         </div>
 
       </div>

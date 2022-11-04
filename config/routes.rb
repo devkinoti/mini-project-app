@@ -23,8 +23,12 @@ Rails.application.routes.draw do
 
   resources :team_members
 
-  devise_for :users
-  devise_for :team_members, path: "project_members"
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+  devise_for :team_members, controllers: {
+    sessions: "project_members/sessions"
+  }, path: "project_members"
 
 
 end
