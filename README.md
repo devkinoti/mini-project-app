@@ -4,5 +4,4 @@
 
 * The goal is to try out a multiple tenant setup using devise and acts as tenant
 
-
-
+* The front end demos a fundamental elements of hotwire
