@@ -60,7 +60,7 @@ class TeamMembersController < ApplicationController
     respond_to do |format|
       if @team_member.save
         
-        format.html { redirect_to team_members_path, notice: "Team Member was successfully created." }
+        format.html { redirect_to team_members_path, notice: "Team Member was successfully created" }
         
       else
         flash.now[:alert] = "Team member has not been created"

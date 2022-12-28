@@ -47,7 +47,7 @@
 
 
         <div class="form-check">
-          <%= form.check_box :terms_agreement, class: "form-check-input" %>
+          <%= form.check_box :terms_agreement, class: "form-check-input", id: "team-member-checkbox" %>
           <%= form.label :terms_agreement, ("I accept the #{ link_to "terms", "#", target: "_blank"} and #{ link_to "privacy policy", "#", target: "_blank"}").html_safe, class: "form-label" %>
         </div> 
 
