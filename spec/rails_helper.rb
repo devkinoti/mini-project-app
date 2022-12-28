@@ -41,6 +41,9 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.include Warden::Test::Helpers, type: :feature 
+  config.after(type: :feature) { Warden.test_reset! }
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
