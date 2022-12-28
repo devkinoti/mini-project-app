@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Users can view projects" do 
+RSpec.feature "Users can edit projects" do 
   let(:user) do 
     FactoryBot.create(:user)
   end
@@ -32,7 +32,7 @@ RSpec.feature "Users can view projects" do
     click_button "Update Project"
 
     expect(page).to have_content("Project has not been updated")
-    
+
   end
 
 

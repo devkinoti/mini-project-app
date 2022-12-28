@@ -71,6 +71,7 @@ class TasksController < ApplicationController
         format.html { redirect_to project_task_path(@project, @task), notice: "Task was successfully updated." }
       
       else
+        flash.now[:alert] = "Task has not been updated"
         format.html { render :edit, status: :unprocessable_entity }
         
       end
