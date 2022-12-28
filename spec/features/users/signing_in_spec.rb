@@ -8,7 +8,7 @@ RSpec.feature 'Users can sign in' do
   end
 
   before do
-    user.confirm
+    login_as(user)
   end
 
   scenario 'with valid credentials' do
