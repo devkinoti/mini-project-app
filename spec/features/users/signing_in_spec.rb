@@ -7,15 +7,12 @@ RSpec.feature 'Users can sign in' do
     FactoryBot.create(:user)
   end
 
-  before do
-    login_as(user)
-  end
 
   scenario 'with valid credentials' do
     visit '/'
 
     click_link 'Sign in as account owner'
-
+    # byebug
     fill_in 'Email address', with: user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
