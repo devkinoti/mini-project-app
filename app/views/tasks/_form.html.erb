@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-12 mb-3" data-controller="team-member">
-          <%= form.label :task_status, class: "form-label" %>
+          <%= form.label :task_status, class: "form-label", id: "task-status" %>
           <%= form.select :status, 
                           options_for_select(Task::TASK_STATUS, selected: task.status),
                           { prompt: "Select task status" },
@@ -57,7 +57,7 @@
           
          
           <%= form.select :team_member_ids, 
-                          options_from_collection_for_select(@available_team_members,:id, :full_name, selected: task.team_member_ids),
+                          options_from_collection_for_select(TeamMember.all,:id, :full_name, selected: task.team_member_ids),
                           { include_blank: false }, 
                           id: "multiple",
                           multiple: "multiple",

@@ -18,14 +18,14 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.build
 
-    @available_team_members = []
-    TeamMember.all.each do |team_member|
-      if team_member.tasks.count < 5
-        @available_team_members << team_member
-      end
-    end
-    # byebug
-    @available_team_members
+    # @available_team_members = []
+    # TeamMember.all.each do |team_member|
+    #   if team_member.tasks.count < 5
+    #     @available_team_members << team_member
+    #   end
+    # end
+    # # byebug
+    # @available_team_members
   end
 
   # GET /tasks/1/edit
@@ -34,14 +34,14 @@ class TasksController < ApplicationController
     @task = @project.tasks.find(params[:id])
 
     # @available_team_members = TeamMemberTaskManager.new.team_member_task_manager(TeamMember.all)
-    @available_team_members = []
-    TeamMember.all.each do |team_member|
-      if team_member.tasks.count < 5
-        @available_team_members << team_member
-      end
-    end
-    # byebug
-    @available_team_members
+    # @available_team_members = []
+    # TeamMember.all.each do |team_member|
+    #   if team_member.tasks.count < 5
+    #     @available_team_members << team_member
+    #   end
+    # end
+    # # byebug
+    # @available_team_members
   end
 
   # POST /tasks or /tasks.json
@@ -54,6 +54,7 @@ class TasksController < ApplicationController
         format.html { redirect_to project_path(@project), notice: "Task was successfully created." }
         
       else
+        flash.now[:alert] = "Task has not been created"
         format.html { render :new, status: :unprocessable_entity }
         
       end
