@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         
       else
+        flash.now[:alert] = "Project has not been created"
         format.html { render :new, status: :unprocessable_entity }
        
       end
@@ -60,6 +61,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         
       else
+        flash.now[:alert] = "Project has not been updated"
         format.html { render :edit, status: :unprocessable_entity }
   
       end
@@ -68,6 +70,8 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
+    @project = load_project 
+    
     @project.destroy
 
     respond_to do |format|

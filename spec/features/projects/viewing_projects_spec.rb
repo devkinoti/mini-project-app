@@ -16,6 +16,7 @@ RSpec.feature "Users can view projects" do
   end
 
   scenario "with project details" do 
+    expect(page).to have_content("Sample project")
     expect(project.account).to eq(user.account)
   end
 

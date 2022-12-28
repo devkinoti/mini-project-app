@@ -8,7 +8,7 @@
   </div>
   <div class="card-body bg-light">
 
-    <%= form_with(model: project) do |form| %>
+    <%= form_with(model: project, data: {turbo: false}) do |form| %>
       <% if project.errors.any? %>
         <div style="color: red">
           <h6 class="fw-normal text-700"><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h6>
