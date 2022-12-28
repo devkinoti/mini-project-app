@@ -1,11 +1,8 @@
-# Whitebox - Assessment app
+# Exploratory Project Management App
 
-- Problem:
-- “Make a rails app to handle projects and tasks.
-- A logged-in user can create projects, create tasks on it and assign the tasks to
-  people.
-- Please feel free to add any functionality as per your choice
-**We would love to see some tests “
+* Simple domain to test out a few rails concepts
 
-## UI Doc
-- contains UI screenshots pdf documentation in repo
+* The goal is to try out a multiple tenant setup using devise and acts as tenant
+
+
+

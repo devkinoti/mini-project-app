@@ -24,7 +24,7 @@ class TasksController < ApplicationController
         @available_team_members << team_member
       end
     end
-    byebug
+    # byebug
     @available_team_members
   end
 
@@ -33,7 +33,15 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
 
-    @available_team_members = TeamMemberTaskManager.new.team_member_task_manager(TeamMember.all)
+    # @available_team_members = TeamMemberTaskManager.new.team_member_task_manager(TeamMember.all)
+    @available_team_members = []
+    TeamMember.all.each do |team_member|
+      if team_member.tasks.count < 5
+        @available_team_members << team_member
+      end
+    end
+    # byebug
+    @available_team_members
   end
 
   # POST /tasks or /tasks.json
