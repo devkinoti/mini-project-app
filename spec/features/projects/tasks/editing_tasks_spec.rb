@@ -22,7 +22,11 @@ RSpec.feature 'Users can create edit tasks for a specific project' do
   end
 
   scenario 'with valid attributes' do
-   
+   fill_in "Name", with: "Sample 123"
+   click_button "Update Task"
+
+   expect(page).to have_content("Task was successfully updated")
+   expect(page).to have_content("Sample 123")
   end
 
   scenario "with invalid attributes" do 

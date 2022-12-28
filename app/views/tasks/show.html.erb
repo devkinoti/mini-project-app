@@ -42,7 +42,8 @@
                   class: "btn btn-primary btn-sm me-1 mb-1",
                   data: { turbo: false }
                     %>
-                <%= link_to "Destroy", "#", class: "btn btn-danger btn-sm me-1 mb-1"%>
+                <%= link_to "Destroy", project_task_path(@project,@task), class: "btn btn-danger btn-sm me-1 mb-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    
             </div>
           </div>
 
