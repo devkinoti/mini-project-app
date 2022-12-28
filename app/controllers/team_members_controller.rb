@@ -25,6 +25,16 @@ class TeamMembersController < ApplicationController
     @team_member = TeamMember.find(params[:id])
   end
 
+  def destroy
+    @team_member = TeamMember.find(params[:id])
+
+    @team_member.destroy 
+
+    flash[:notice] = "Team Member has been deleted"
+
+    redirect_to team_members_path 
+  end
+
   def update
     if params[:team_member][:password].blank? 
       params[:team_member].delete(:password)
@@ -37,6 +47,7 @@ class TeamMembersController < ApplicationController
       if @team_member.update(team_member_params)
         format.html { redirect_to team_member_path(@team_member), notice: "Team member was successfully updated" }
       else
+        flash.now[:alert] = "Team member has not been updated"
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -52,6 +63,7 @@ class TeamMembersController < ApplicationController
         format.html { redirect_to team_members_path, notice: "Team Member was successfully created." }
         
       else
+        flash.now[:alert] = "Team member has not been created"
         format.html { render :new, status: :unprocessable_entity }
        
       end
