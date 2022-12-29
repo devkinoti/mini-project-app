@@ -54,6 +54,11 @@ group :development, :test do
   gem "byebug"
   gem "rspec-rails"
   gem 'factory_bot_rails'
+  gem "brakeman"
+  gem "bundler-audit"
+  gem "ruby-audit"
+  gem "rubocop-rails"
+  gem "rubocop"
 end
 
 group :development do
