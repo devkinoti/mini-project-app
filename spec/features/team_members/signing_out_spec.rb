@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.feature 'Team members can sign out' do
@@ -5,13 +7,9 @@ RSpec.feature 'Team members can sign out' do
     FactoryBot.create(:user)
   end
 
-  let(:team_member) do 
+  let(:team_member) do
     FactoryBot.create(:team_member, account: user.account)
   end
-
-
-
-
 
   before do
     # user.confirm

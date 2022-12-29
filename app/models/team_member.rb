@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: team_members
@@ -33,24 +35,22 @@ class TeamMember < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :lockable, :confirmable
 
-
   # associations
   has_and_belongs_to_many :tasks
 
   # Public activity tracking
-  include PublicActivity::Model 
-  tracked owner: Proc.new { |controller, model| controller.current_tenant }
- 
+  include PublicActivity::Model
+  tracked owner: proc { |controller, _model| controller.current_tenant }
 
-  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   # validations
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create } 
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates_acceptance_of :terms_agreement, allow_nil: false, on: :create
 
-  def full_name 
+  def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
 

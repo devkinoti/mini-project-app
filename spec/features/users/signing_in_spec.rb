@@ -7,7 +7,6 @@ RSpec.feature 'Users can sign in' do
     FactoryBot.create(:user)
   end
 
-
   scenario 'with valid credentials' do
     visit '/'
 
@@ -17,7 +16,7 @@ RSpec.feature 'Users can sign in' do
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    expect(page).to have_content "Signed in successfully"
+    expect(page).to have_content 'Signed in successfully'
     expect(page).to have_content "Hello, #{user.first_name}"
   end
 end

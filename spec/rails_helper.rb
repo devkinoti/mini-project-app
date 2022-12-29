@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require "public_activity/testing"
+require 'public_activity/testing'
 
 PublicActivity.enabled = false
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -41,7 +43,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.include Warden::Test::Helpers, type: :feature 
+  config.include Warden::Test::Helpers, type: :feature
   config.after(type: :feature) { Warden.test_reset! }
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
@@ -66,7 +68,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-    # spec_helper.rb
+  # spec_helper.rb
   # config.before(:suite) do |example|
   #   # Make the default tenant globally available to the tests
   #   $default_account = FactoryBot.create(:user).account

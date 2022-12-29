@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   set_current_tenant_through_filter
   before_action :set_current_account
-  layout "dashboard"
-  devise_group :project_member, contains: [:user, :team_member]
+  layout 'dashboard'
+  devise_group :project_member, contains: %i[user team_member]
 
   before_action :authenticate_project_member!
-
 
   # GET /tasks/1 or /tasks/1.json
   def show
@@ -51,12 +52,12 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_path(@project), notice: "Task was successfully created." }
-        
+        format.html { redirect_to project_path(@project), notice: 'Task was successfully created.' }
+
       else
-        flash.now[:alert] = "Task has not been created"
+        flash.now[:alert] = 'Task has not been created'
         format.html { render :new, status: :unprocessable_entity }
-        
+
       end
     end
   end
@@ -68,12 +69,12 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to project_task_path(@project, @task), notice: "Task was successfully updated." }
-      
+        format.html { redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.' }
+
       else
-        flash.now[:alert] = "Task has not been updated"
+        flash.now[:alert] = 'Task has not been updated'
         format.html { render :edit, status: :unprocessable_entity }
-        
+
       end
     end
   end
@@ -86,35 +87,40 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_path(@project), notice: "Task was successfully destroyed." }
+      format.html { redirect_to project_path(@project), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  def remove_team_member 
+  def remove_team_member
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
 
     respond_to do |format|
       @task.team_members.delete(params[:team_member_id])
-      format.html { redirect_to project_task_path(@project, @task), notice: "Team Member has been successfully removed from the task" }
+      format.html do
+        redirect_to project_task_path(@project, @task),
+                    notice: 'Team Member has been successfully removed from the task'
+      end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    def set_current_account 
-      return unless current_user.present?
-      current_account = current_user.account 
-      ActsAsTenant.current_tenant = current_account
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:name, :description, :end_date, :start_date, :status, team_member_ids: [])
-    end
+  def set_current_account
+    return unless current_user.present?
+
+    current_account = current_user.account
+    ActsAsTenant.current_tenant = current_account
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:name, :description, :end_date, :start_date, :status, team_member_ids: [])
+  end
 end

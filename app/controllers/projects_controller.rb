@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   set_current_tenant_through_filter
   before_action :set_current_account
-  layout "dashboard"
-  devise_group :project_member, contains: [:user, :team_member]
-  
+  layout 'dashboard'
+  devise_group :project_member, contains: %i[user team_member]
+
   before_action :authenticate_project_member!
-  
-  
+
   # before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
@@ -37,45 +38,43 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     @project = ProjectUniqueNumber.new.create_project_number(@project)
 
-
-
     respond_to do |format|
       if @project.save
-        
-        format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
-        
+
+        format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
+
       else
-        flash.now[:alert] = "Project has not been created"
+        flash.now[:alert] = 'Project has not been created'
         format.html { render :new, status: :unprocessable_entity }
-       
+
       end
     end
   end
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
-    @project = load_project 
+    @project = load_project
 
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
-        
+        format.html { redirect_to project_url(@project), notice: 'Project was successfully updated.' }
+
       else
-        flash.now[:alert] = "Project has not been updated"
+        flash.now[:alert] = 'Project has not been updated'
         format.html { render :edit, status: :unprocessable_entity }
-  
+
       end
     end
   end
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    @project = load_project 
+    @project = load_project
 
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: "Project was successfully destroyed" }
+      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed' }
       format.json { head :no_content }
     end
   end
@@ -84,52 +83,52 @@ class ProjectsController < ApplicationController
     @project = load_project
   end
 
-  def team_members 
+  def team_members
     @project = load_project
-    @tasks = @project.tasks 
+    @tasks = @project.tasks
     @total = []
-    @tasks.each do |task| 
+    @tasks.each do |task|
       @total << task.team_members.pluck(:id)
     end
     @total = @total&.flatten!(-1)&.uniq!&.count
-    
   end
 
   def project_report
-    @project = load_project 
+    @project = load_project
 
     respond_to do |format|
-      format.html 
-      format.pdf do 
-        render pdf: "Ledger Cub Project Report",
-               template: "projects/project_report",
+      format.html
+      format.pdf do
+        render pdf: 'Ledger Cub Project Report',
+               template: 'projects/project_report',
                formats: [:html],
                dispostion: :inline,
-               type: "application/pdf",
-               layout: "project_report_pdf"
-
+               type: 'application/pdf',
+               layout: 'project_report_pdf'
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def load_project
-      @project = Project.find(params[:id])
-    end
 
-    def set_current_account 
-      return unless current_user.present?
-      current_account = current_user.account 
-      ActsAsTenant.current_tenant = current_account
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def load_project
+    @project = Project.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def project_params
-      params.require(:project).permit(
-        :project_name, 
-        :description,
-        :project_number
-      )
-    end
+  def set_current_account
+    return unless current_user.present?
+
+    current_account = current_user.account
+    ActsAsTenant.current_tenant = current_account
+  end
+
+  # Only allow a list of trusted parameters through.
+  def project_params
+    params.require(:project).permit(
+      :project_name,
+      :description,
+      :project_number
+    )
+  end
 end

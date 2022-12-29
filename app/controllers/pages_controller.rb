@@ -1,10 +1,9 @@
-class PagesController < ApplicationController
-  layout "landing"
-  
-  def home
-  end
+# frozen_string_literal: true
 
-  def pricing
-    
-  end
+class PagesController < ApplicationController
+  layout 'landing'
+
+  def home; end
+
+  def pricing; end
 end

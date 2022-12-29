@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: projects
@@ -18,14 +20,14 @@ class Project < ApplicationRecord
   has_many :tasks
 
   # validations
-  validates :project_name, presence: true 
+  validates :project_name, presence: true
   validates :description, presence: true
 
   # Public activity tracking
-  include PublicActivity::Model 
-  tracked owner: Proc.new { |controller, model| controller.current_tenant }
+  include PublicActivity::Model
+  tracked owner: proc { |controller, _model| controller.current_tenant }
 
-  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   def to_s
     project_name

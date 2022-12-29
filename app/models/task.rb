@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tasks
@@ -20,25 +22,25 @@ class Task < ApplicationRecord
   has_and_belongs_to_many :team_members
 
   # Public activity tracking
-  include PublicActivity::Model 
-  tracked owner: Proc.new { |controller, model| controller.current_tenant }
-    
+  include PublicActivity::Model
+  tracked owner: proc { |controller, _model| controller.current_tenant }
 
-  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   # validations
   validates :name, :description, :status, presence: true
-  
-  # time validations
-  validates :start_date, comparison: { less_than: :end_date, message: "for the task can't be after the task's end date" }
-  validates :end_date, comparison: { greater_than: :start_date, message: "for the task can't be before the task's start date"}
 
+  # time validations
+  validates :start_date,
+            comparison: { less_than: :end_date, message: "for the task can't be after the task's end date" }
+  validates :end_date,
+            comparison: { greater_than: :start_date, message: "for the task can't be before the task's start date" }
 
   TASK_STATUS = [
-    "Not Started",
-    "In progress",
-    "Complete"
-  ]
+    'Not Started',
+    'In progress',
+    'Complete'
+  ].freeze
 
   def to_s
     name

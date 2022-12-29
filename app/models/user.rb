@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -32,24 +34,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :lockable, :confirmable
 
-
-
   # validations
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create } 
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates_acceptance_of :terms_agreement, allow_nil: false, on: :create
-
 
   # associations
   has_one :account
   has_many :projects, dependent: :destroy
 
   # call backs
-  before_create :set_account 
+  before_create :set_account
 
   def set_account
-    self.build_account
+    build_account
   end
 
   def to_s

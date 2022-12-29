@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 class ProfileController < ApplicationController
   set_current_tenant_through_filter
   before_action :set_current_account
-  layout "dashboard"
-  devise_group :project_member, contains: [:user, :team_member]
-  
+  layout 'dashboard'
+  devise_group :project_member, contains: %i[user team_member]
+
   before_action :authenticate_project_member!
 
-  def show 
-  end
+  def show; end
 
-  private 
+  private
 
-  def set_current_account 
+  def set_current_account
     return unless current_user.present?
-    current_account = current_user.account 
+
+    current_account = current_user.account
     ActsAsTenant.current_tenant = current_account
   end
 end

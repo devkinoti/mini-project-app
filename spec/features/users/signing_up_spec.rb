@@ -1,12 +1,14 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.feature "Users can sign up" do 
-  scenario "when user provides valid details" do 
-    visit "/"
+require 'rails_helper'
 
-    click_link "Create an account"
+RSpec.feature 'Users can sign up' do
+  scenario 'when user provides valid details' do
+    visit '/'
 
-    #byebug
+    click_link 'Create an account'
+
+    # byebug
 
     fill_in 'First Name', with: 'test'
     fill_in 'Last Name', with: 'sample'
@@ -15,8 +17,6 @@ RSpec.feature "Users can sign up" do
     fill_in 'Confirm password', with: 'password'
     find('#basic-register-checkbox').click
     click_button 'Sign up'
-
-
 
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end

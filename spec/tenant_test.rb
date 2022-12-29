@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # test.rb
 require_dependency 'acts_as_tenant/test_tenant_middleware'
 

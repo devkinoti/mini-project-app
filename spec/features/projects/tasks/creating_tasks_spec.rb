@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.feature 'Users can create new tasks for a specific project' do
-  let(:user) do 
-     FactoryBot.create(:user) 
+  let(:user) do
+    FactoryBot.create(:user)
   end
 
-  let(:project) do 
-    FactoryBot.create(:project, user: user, account: user.account) 
+  let(:project) do
+    FactoryBot.create(:project, user:, account: user.account)
   end
 
   before do
@@ -19,19 +19,19 @@ RSpec.feature 'Users can create new tasks for a specific project' do
   end
 
   scenario 'with valid attributes and without a team member' do
-    fill_in 'Name', with: "Sample task"
-    fill_in "Description", with: "Sample description Lorem ipsum dolor"
-    fill_in "Start date", with: DateTime.now
-    fill_in "End date", with: DateTime.now + 1
-    select "Not Started", from: "task_status"
+    fill_in 'Name', with: 'Sample task'
+    fill_in 'Description', with: 'Sample description Lorem ipsum dolor'
+    fill_in 'Start date', with: DateTime.now
+    fill_in 'End date', with: DateTime.now + 1
+    select 'Not Started', from: 'task_status'
     click_button 'Create Task'
 
     expect(page).to have_content 'Task was successfully created'
   end
 
   scenario 'with invalid attributes' do
-    click_button "Create Task"
+    click_button 'Create Task'
 
-    expect(page).to have_content "Task has not been created"
+    expect(page).to have_content 'Task has not been created'
   end
 end

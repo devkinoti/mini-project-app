@@ -1,39 +1,38 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.feature "Users can edit projects" do 
-  let(:user) do 
+require 'rails_helper'
+
+RSpec.feature 'Users can edit projects' do
+  let(:user) do
     FactoryBot.create(:user)
   end
 
-  let(:project) do 
-    FactoryBot.create(:project, user: user, account: user.account)
+  let(:project) do
+    FactoryBot.create(:project, user:, account: user.account)
   end
 
-  before do 
+  before do
     login_as(user)
 
     visit project_path(project)
-    click_link "Edit"
+    click_link 'Edit'
   end
 
-  scenario "with valid attributes" do
-     fill_in "Project name", with: "Sample 1234"
+  scenario 'with valid attributes' do
+    fill_in 'Project name', with: 'Sample 1234'
 
-     click_button "Update Project"
+    click_button 'Update Project'
 
-    expect(page).to have_content("Project was successfully updated")
-    expect(page).to have_content("Sample 1234")
+    expect(page).to have_content('Project was successfully updated')
+    expect(page).to have_content('Sample 1234')
     expect(project.account).to eq(user.account)
   end
 
-  scenario "with invalid attributes" do 
-    fill_in "Project name", with: ""
+  scenario 'with invalid attributes' do
+    fill_in 'Project name', with: ''
 
-    click_button "Update Project"
+    click_button 'Update Project'
 
-    expect(page).to have_content("Project has not been updated")
-
+    expect(page).to have_content('Project has not been updated')
   end
-
-
 end

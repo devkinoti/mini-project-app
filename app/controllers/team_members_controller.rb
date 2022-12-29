@@ -1,23 +1,23 @@
-class TeamMembersController < ApplicationController 
-  set_current_tenant_through_filter 
-  before_action :set_current_account 
-  layout "dashboard"
+# frozen_string_literal: true
 
-  devise_group :project_member, contains: [:user, :team_member]
-  
+class TeamMembersController < ApplicationController
+  set_current_tenant_through_filter
+  before_action :set_current_account
+  layout 'dashboard'
+
+  devise_group :project_member, contains: %i[user team_member]
+
   before_action :authenticate_project_member!
 
-
-
-  def index 
+  def index
     @pagy, @team_members = pagy(TeamMember.order(created_at: :desc), items: 10)
   end
 
-  def new 
+  def new
     @team_member = TeamMember.new
   end
 
-  def show 
+  def show
     @team_member = TeamMember.find(params[:id])
   end
 
@@ -28,44 +28,39 @@ class TeamMembersController < ApplicationController
   def destroy
     @team_member = TeamMember.find(params[:id])
 
-    @team_member.destroy 
+    @team_member.destroy
 
-    flash[:notice] = "Team Member has been deleted"
+    flash[:notice] = 'Team Member has been deleted'
 
-    redirect_to team_members_path 
+    redirect_to team_members_path
   end
 
   def update
-    if params[:team_member][:password].blank? 
-      params[:team_member].delete(:password)
-    end
-
+    params[:team_member].delete(:password) if params[:team_member][:password].blank?
 
     @team_member = TeamMember.find(params[:id])
 
     respond_to do |format|
       if @team_member.update(team_member_params)
-        format.html { redirect_to team_member_path(@team_member), notice: "Team member was successfully updated" }
+        format.html { redirect_to team_member_path(@team_member), notice: 'Team member was successfully updated' }
       else
-        flash.now[:alert] = "Team member has not been updated"
+        flash.now[:alert] = 'Team member has not been updated'
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
-
   end
 
-
-  def create 
+  def create
     @team_member = TeamMember.new(team_member_params)
     respond_to do |format|
       if @team_member.save
-        
-        format.html { redirect_to team_members_path, notice: "Team Member was successfully created" }
-        
+
+        format.html { redirect_to team_members_path, notice: 'Team Member was successfully created' }
+
       else
-        flash.now[:alert] = "Team member has not been created"
+        flash.now[:alert] = 'Team member has not been created'
         format.html { render :new, status: :unprocessable_entity }
-       
+
       end
     end
   end
@@ -76,11 +71,10 @@ class TeamMembersController < ApplicationController
     params.require(:team_member).permit(:first_name, :last_name, :email, :password, :terms_agreement, role_ids: [])
   end
 
-  def set_current_account 
+  def set_current_account
     return unless current_user.present?
-    current_account = current_user.account 
+
+    current_account = current_user.account
     ActsAsTenant.current_tenant = current_account
   end
-
-
 end
