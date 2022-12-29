@@ -62,7 +62,7 @@
             <div class="card-body text-justify">
               <div class="flex-1 position-relative ps-2">
               <% @team_member.tasks.each do |task| %>
-                <%= render "team_members/task" %>
+                <%= render "team_members/task", task: task %>
               <%end%>
                 
               </div>

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Users can remove team members from tasks" do 
+RSpec.feature "Users can remove team members" do 
   let(:user) do 
     FactoryBot.create(:user)
   end
@@ -9,14 +9,27 @@ RSpec.feature "Users can remove team members from tasks" do
     FactoryBot.create(:team_member, account: user.account)
   end
 
+  let(:project) do 
+    FactoryBot.create(:project, user: user, account: user.account, )
+  end
+
+  let(:task) do 
+    FactoryBot.create(:task, project: project, account: user.account)
+
+  end
+
   before do 
     login_as(user)
 
-    visit team_member_path(team_member)
+    task.team_members << team_member
+
+    visit project_task_path(project,task)
   end
 
-  scenario "team member for a project" do 
-    expect(page).to have_content(team_member.full_name)
+  scenario "from a specific task" do 
+    click_button "Remove from task"
+
+    expect(page).to have_current_path(project_task_path(project,task))
   end
 
 
